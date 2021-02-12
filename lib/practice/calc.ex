@@ -9,6 +9,7 @@ defmodule Practice.Calc do
     num
   end
 
+# applies a given operator to two numbers
   def applyy(n1, n2, op) do
     no1 = parse_integer(n1)
     no2 = parse_integer(n2)
@@ -24,6 +25,7 @@ defmodule Practice.Calc do
     end
   end
 
+# combines the list of tuples [op1, num1] [op2, num2] -> [op1, (op(num1,num2))]
   def makeone(c1, c2) do
     [Enum.at(c1, 0), applyy(Enum.at(c1, 1), Enum.at(c2, 1), Enum.at(c2, 0))]
   end
@@ -36,6 +38,8 @@ defmodule Practice.Calc do
     ls |> Enum.at(idx) |> Enum.at(0)
   end
 
+# runs through the list and combines the tuples based on the operator
+# we then do this in order of operations
   def consolidate_by_op_acc(idx, nl, ls, op) do
     # if the list is empty we return
     cond do
@@ -50,7 +54,6 @@ defmodule Practice.Calc do
     end
     # if the operator is the desired one take it and the last one apply and recur
     # else (cons  and recur)
-    #
   end
 
 
@@ -59,20 +62,6 @@ defmodule Practice.Calc do
     consolidate_by_op_acc(Enum.count(ls) - 1, [], ls, op)
 
   end
-
-
-#  def consolidate_ops(ls) do
-
-
-
-  # def equate(ls) do
-  #   if Enum.count(ls) == 1:
-  #     ls |> hd |>
-
-  # with chunks [[2] [+ 3] [* 4]]
-  # run multiplication first
-  # access that index and apply it with this number directly before -> 12
-  # carry over [+ 12]
 
 
   def calc(expr) do
