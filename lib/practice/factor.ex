@@ -9,6 +9,7 @@ defmodule Practice.Factor do
     num
   end
 
+# factors out all the twos of a given number
   def ntwos(x, l) do
     if rem(x, 2) != 0 do
       [x, l]
@@ -17,6 +18,7 @@ defmodule Practice.Factor do
     end
   end
 
+# factors out all the odd numbers
   def cfactors(x, i) do
     if rem(x, i) != 0 do
       []
@@ -25,9 +27,10 @@ defmodule Practice.Factor do
     end
   end
 
+# factors the composites to be broken down
   def mcomposites(x, i, l, og) do
-    if Enum.reduce(l, 1, fn(x, acc) -> x * acc end) < og do # fix 2nd half of if
-      mcomposites(x, i + 2, cfactors(x, i) ++ l, og) # this prolly the problem
+    if Enum.reduce(l, 1, fn(x, acc) -> x * acc end) < og do 
+      mcomposites(x, i + 2, cfactors(x, i) ++ l, og) 
     else
       l
     end
